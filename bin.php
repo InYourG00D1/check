@@ -33,11 +33,11 @@ $six = trim(fgets(STDIN, 1024));
   }
   // JSON DATA
     $bin = defineNUM($six);
-    $curl = curl("http://api.bincodes.com/bin/?format=json&api_key=9fc53b3db09ca830488d19546a4fc2a1&bin=515735=".$bin);
+    $curl = curl("https://lookup.binlist.net/".$bin);
     $json = json_decode($curl);
     $cardBrand = $json->brand ? $json->brand : "not found";
     $cardType = $json->type ? $json->type : "not found";
-    $cardPrepaid = $json->prepaid ? $json->prepaid : "not found";
+    $cardScheme = $json->scheme ? ucwords($json->scheme) : "not found";
     $countryCode = $json->country->alpha2 ? $json->country->alpha2 : "not found";
     $countryName = $json->country->name ? $json->country->name : "not found";
     $countryLat = $json->country->latitude ? $json->country->latitude : "not found";
